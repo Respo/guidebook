@@ -1,12 +1,10 @@
 ## Respo is a virtual DOM library in Calcit-js
 
-> Docs was aligned to `0.11.x`, partly outdated
+> Docs was aligned to `0.11.x`, partly outdated. Previously created in ClojureScript.
 
 Inspired by React and Reagent.
 
-[![Respo](https://img.shields.io/clojars/v/respo/respo.svg)](https://clojars.org/respo/respo)
-
-- [Home](http://respo.site)
+- [Home](http://respo-mvc.org)
 - [Beginner Guide](https://github.com/Respo/respo/wiki/Beginner-Guide)
 - [Minimal App](https://github.com/Respo/minimal-respo)
 - [Demo](http://repo.respo.site/respo/)
