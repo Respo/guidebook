@@ -1,6 +1,6 @@
 ## DOM elements
 
-An element is defined with [`create-element`](create-element) like:
+An element is defined with [`create-element`](../apis/create-element.md) like:
 
 ```cirru
 defmacro a (props & children)
@@ -55,5 +55,4 @@ a body br button canvas code div footer
   ul
 ```
 
-Some are not, but you can create them very quickly with [`create-element`](create-element).
-
+Some are not, but you can create them very quickly with [`create-element`](../apis/create-element.md).

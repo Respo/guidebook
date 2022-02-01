@@ -1,8 +1,8 @@
 Want to explore by yourself?
 
-- Minimal App https://github.com/Respo/minimal-respo
-- Examples https://github.com/Respo/respo-examples
-- Complicated editor in Respo https://github.com/Cirru/calcit-editor
+- Minimal App <https://github.com/Respo/minimal-respo>
+- Examples <https://github.com/Respo/respo-examples>
+- Complicated editor in Respo <https://github.com/Cirru/calcit-editor>
 
 ### What is Respo?
 
@@ -12,7 +12,7 @@ Respo is a virtual DOM library like React, built with Calcit-js to embrace funct
 
 Besides experiences on Web apps, you also need to know:
 
-- Calcit-js http://calcit-lang.org
+- Calcit-js <http://calcit-lang.org>
 
 ### Component definition
 
@@ -194,7 +194,6 @@ defn render-app! ()
 
 Note that you need to define `dispatch!` function by yourself.
 
-
 ### Adding effects
 
 To define effects, use `defeffect`:
@@ -298,7 +297,7 @@ div
 
 Find working examples:
 
-* Minimal app https://github.com/Respo/minimal-respo
-* Wanderlist https://github.com/Memkits/wanderlist
+- Minimal app https://github.com/Respo/minimal-respo
+- Wanderlist https://github.com/Memkits/wanderlist
 
 Find me on [Twitter](https://twitter.com/jiyinyiyong) if you got interested.
