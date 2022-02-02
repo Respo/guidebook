@@ -8,7 +8,6 @@
 |                      | [`div`](apis/div.md)                       |
 |                      | [`<>`](apis/expand-tag.md)                 |
 |                      | [`defeffect`](apis/defeffect.md)           |
-|                      | [`defplugin`](apis/defplugin.md)           |
 |                      | [`create-element`](apis/create-element.md) |
 |                      | [`render!`](apis/render_.md)               |
 |                      | [`clear-cache!`](apis/clear-cache_.md)     |

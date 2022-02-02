@@ -1,9 +1,9 @@
+
 # Respo Guide
 
 > for Respo on Calcit-js.
 
 - [Home](./home.md)
-- [Quick Start](./quick-start.md)
 - [Beginner Guide](./beginner-guide.md)
 - [Guide](guide.md)
   - [Why Respo](./guide/why-respo.md)
@@ -26,7 +26,6 @@
   - [`div`](apis/div.md)
   - [`<>`](apis/expand-tag.md)
   - [`defeffect`](apis/defeffect.md)
-  - [`defplugin`](apis/defplugin.md)
   - [`create-element`](apis/create-element.md)
   - [`render!`](apis/render_.md)
   - [`clear-cache!`](apis/clear-cache_.md)
