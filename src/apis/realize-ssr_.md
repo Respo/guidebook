@@ -5,7 +5,7 @@ The code looks like this:
 
 [progressive]: https://medium.com/@jiyinyiyong/progressive-server-side-rendering-that-we-may-need-8980e7c4d61a
 
-```cirru
+```
 def ssr? (some? (.!querySelector js/document "|meta.respo-ssr"))
 def mount-target (.!querySelector js/document "|.app"))
 

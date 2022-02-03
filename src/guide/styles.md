@@ -2,7 +2,7 @@
 
 Styles are represented in HashMap so it's very trival to extend with `merge` and `if`:
 
-```cirru
+```
 def style-a $ {}
   :line-height 1.6
   :color (hsl 0 0 80)
@@ -20,7 +20,7 @@ Also I prepared a function called [`hsl`](https://github.com/mvc-works/hsl.clj) 
 
 In Respo, style updates are defined with direct accessing to `el.style`:
 
-```cirru
+```
 defn add-style (target op)
   let
       style-name (dashed->camel (name (key op))
@@ -46,7 +46,7 @@ You can find more in the [source code][styles].
 
 Actually there's one more solution to specify CSS content, the `<style>` element:
 
-```cirru
+```
 style $ {}
   :innerHTML "|.demo {color: red;}"
 ```

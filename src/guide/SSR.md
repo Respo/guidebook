@@ -1,16 +1,16 @@
-For more details please read https://github.com/Respo/ssr-stages
+For more details please read <https://github.com/Respo/ssr-stages>
 
 ### Rendering assumptions
 
 Before talking about **S**erver **S**ide **R**endering(SSR), you should know about how Respo mounts and rerenders. There's a Atom called `*global-element` which represents the virtual DOM of currently rendered HTML content on the page:
 
-```cirru
+```
 defatom *global-element nil
 ```
 
 And every time you call `render!`, it checks if old virtual DOM exists. If exists, it will do patching with `rerender-app!` rather than mounting:
 
-```cirru
+```
 defn render! (target markup dispatch!)
   if (some? @*global-element)
     rerender-app! target markup dispatch!
@@ -27,7 +27,7 @@ And note that the HTML transferred over the network does not bind events, and we
 
 How to prepare that virtual DOM? You have to render that by yourself. Since Respo components are like functions, it's not hard. Read code below:
 
-```cirru
+```
 defatom *store $ {}
 
 def mount-target (js/document.querySelector "|.app")

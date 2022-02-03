@@ -34,14 +34,14 @@ It's possible to discover new features we have't noticed yet.
 |                           | [`map-with-idx`](#map-with-idx)                    |
 | `respo.render.diff`       | [`find-element-diffs`](apis/find-element-diffs.md) |
 | `respo.render.patch`      | [`apply-dom-changes`](apis/apply-dom-changes.md)   |
-| `respo.controller.client` | [`activate-instance!`](apis/activate-instance_.md) |
-|                           | [`patch-instance!`](apis/patch-instance_.md)       |
+| `respo.controller.client` | [`activate-instance!`](apis/activate-instance.md)  |
+|                           | [`patch-instance!`](apis/patch-instance.md)        |
 
 ### APIs
 
 ##### map-with-idx
 
-```cirru
+```
 respo.util.list/map-with-idx identity ([] :a :b)
 ; [] ([] 0 :a) ([] 1 :b)
 ```

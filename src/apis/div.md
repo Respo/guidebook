@@ -2,7 +2,7 @@
 
 Here's how you use `div` macro to create a tree of `<div>`s:
 
-```cirru
+```
 div
   {}
     :class-name "|example"

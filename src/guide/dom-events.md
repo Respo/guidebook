@@ -2,7 +2,7 @@
 
 Here is a simple demo handling `input` events:
 
-```cirru
+```
 input $ {}
   :on-input $ fn (e dispatch!)
     println (:value e)
@@ -10,7 +10,7 @@ input $ {}
 
 `e` is a HashMap with several entries:
 
-```cirru
+```
 def e $ {}
   :type "|input"
   :original-event event
@@ -18,7 +18,7 @@ def e $ {}
 
 The details:
 
-```cirru
+```
 defn event->edn (event)
   ; js/console.log "|simplify event:" event
   ->

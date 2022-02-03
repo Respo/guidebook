@@ -1,4 +1,3 @@
-
 # Respo Guide
 
 > for Respo on Calcit-js.
@@ -40,6 +39,6 @@
   - [`mute-element`](apis/mute-element.md)
   - [`find-element-diffs`](apis/find-element-diffs.md)
   - [`apply-dom-changes`](apis/apply-dom-changes.md)
-  - [`activate-instance!`](apis/activate-instance_.md)
-  - [`patch-instance!`](apis/patch-instance_.md)
+  - [`activate-instance!`](apis/activate-instance.md)
+  - [`patch-instance!`](apis/patch-instance.md)
 - [Community](./community.md)

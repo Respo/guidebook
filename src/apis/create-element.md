@@ -2,7 +2,7 @@
 
 Function to create virtual element. Pass to it a name, a HashMap, and some children:
 
-```cirru
+```
 defmacro a (props & children)
   create-element :a ~props ~@children
 ```

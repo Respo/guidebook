@@ -3,7 +3,7 @@
 This is the component to add spaces.
 It decouples whitespaces from margins of elements, so I consider it a good practice.
 
-```cirru
+```
 ; "for horizontal space"
 comp-space 8 nil
 
@@ -15,7 +15,7 @@ Make sure that one of them left `nil` so the component may fill it.
 
 It's also okay to use strings:
 
-```cirru
+```
 ; for vertical space
 comp-space nil "|8px"
 ```

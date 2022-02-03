@@ -1,6 +1,6 @@
 ## `defcomp`
 
-```cirru
+```
 defcomp comp-demo (content)
   div
     {}

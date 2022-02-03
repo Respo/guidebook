@@ -1,6 +1,6 @@
 ## `clear-cache!`
 
-```cirru
+```
 clear-cache!
 ```
 

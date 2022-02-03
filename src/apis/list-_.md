@@ -2,7 +2,7 @@
 
 A macro for rendering lists:
 
-```cirru
+```
 list->
   {}
     :style $ {}
