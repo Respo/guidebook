@@ -3,7 +3,7 @@
 Add effects:
 
 ```
-defefect effect-a (a b) (action el at-place?)
+defeffect effect-a (a b) (action el at-place?)
   case-default action
     do
     :mount (println "|mounted")

@@ -297,7 +297,7 @@ div
 
 Find working examples:
 
-- Minimal app https://github.com/Respo/minimal-respo
-- Wanderlist https://github.com/Memkits/wanderlist
+- Minimal app <https://github.com/Respo/minimal-respo>
+- Wanderlist <https://github.com/Memkits/wanderlist>
 
 Find me on [Twitter](https://twitter.com/jiyinyiyong) if you got interested.
