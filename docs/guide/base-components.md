@@ -2,7 +2,7 @@
 
 There are some base components for building apps built inside Respo:
 
-```
+```cirru
 respo.comp.space/comp-space
 respo.comp.space/=< ; "which is an alias for `comp-space`"
 respo.comp.inspect/comp-inspect

@@ -3,14 +3,14 @@
 Unlike React, states in Respo is maintained manually for stablility during hot code swapping.
 At first, states is a HashMap inside the store:
 
-```
+```cirru
 defatom *store {}
   :states $ {}
 ```
 
 By design, if states is added, you would a tree:
 
-```
+```cirru
 {}
   :states $ {}
     :data $ {}
@@ -36,7 +36,7 @@ You also notice that its structure is simpler than a DOM tree, it only contains 
 
 When you call `(>> states :todolist)`, you get new `states` variable for a child component:
 
-```
+```cirru
 {}
   ; "generated cursor, nil at top level"
   :cursor $ [] :todolist
@@ -58,7 +58,7 @@ When you call `(>> states :todolist)`, you get new `states` variable for a child
 
 Then you call `(>> states "task-1-id")` and you get new `states` for child "task-1":
 
-```
+```cirru
 {}
   ; "generated cursor"
   :cursor $ [] :todolist "|task-1-id"
@@ -71,7 +71,7 @@ Then you call `(>> states "task-1-id")` and you get new `states` for child "task
 For state inside each component, it's `nil` at first.
 You want to have an initial state, use `or` to provide one.
 
-```
+```cirru
 defcomp comp-task (states)
   let
       cursor (:cursor states)
@@ -85,7 +85,7 @@ After there's data in states, you get data that was set.
 
 Then you want to update component s:tate
 
-```
+```cirru
 defcomp comp-task (states)
   let
       cursor (:cursor states)
@@ -102,7 +102,7 @@ The last step to to update global states with `respo.cursor/update-states`.
 Internally `(dispatch! cursor op-data)` will be transformed to `(dispatch! :states ([] cursor op-data))`.
 And then in `updater` you add:
 
-```
+```cirru
 case-default op
   ; other actions
   do store
@@ -115,7 +115,7 @@ case-default op
 
 Let's wrap it. First we have empty states inside store:
 
-```
+```cirru
 {}
   :states $ {}
 ```
@@ -126,7 +126,7 @@ and then passed to `(comp-task (>> states (:id task)) task)`.
 In `comp-todolist`, `(:data states)` provides component state, `(:cursor states)` provides its cursor.
 Call `(dispatch! cursor {:input "|New draft"})` and global store will become:
 
-```
+```cirru
 {}
   :states $ {}
     :todolist $ {}
@@ -137,7 +137,7 @@ Call `(dispatch! cursor {:input "|New draft"})` and global store will become:
 
 In `comp-task` of "task-1", you also get `state` and `cursor`, so call `(dispatch! cursor {:draft "New text"})` you will get:
 
-```
+```cirru
 {}
   :states $ {}
     :todolist $ {}

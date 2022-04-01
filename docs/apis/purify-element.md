@@ -2,7 +2,7 @@
 
 This function flattens `:data-events` in the virtual DOM tree:
 
-```
+```cirru
 purify-element element
 ```
 

@@ -2,7 +2,7 @@
 
 To render a list, you need use `respo.core/list->` with children in `key/value` pairs:
 
-```
+```cirru
 list->
   {}
     :style $ {}
@@ -13,13 +13,13 @@ list->
 
 If the tag is `:div`, you can omit that and just write:
 
-```
+```cirru
 list-> props children
 ```
 
 It's common pattern to use `->` to transform the list:
 
-```
+```cirru
 list->
   {}
     :class-name "|task-list"

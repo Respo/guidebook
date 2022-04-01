@@ -2,7 +2,7 @@
 
 This function removes events from a virtual DOM tree:
 
-```
+```cirru
 mute-element element
 ```
 

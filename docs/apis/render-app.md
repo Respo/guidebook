@@ -2,7 +2,7 @@
 
 This function renders virtual DOM markups into virtual DOM data:
 
-```
+```cirru
 render-app markup states build-mutate old-element
 ```
 

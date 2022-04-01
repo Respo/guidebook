@@ -41,7 +41,7 @@ It's possible to discover new features we have't noticed yet.
 
 ##### map-with-idx
 
-```
+```cirru
 respo.util.list/map-with-idx identity ([] :a :b)
 ; [] ([] 0 :a) ([] 1 :b)
 ```

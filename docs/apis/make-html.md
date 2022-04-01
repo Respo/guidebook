@@ -2,7 +2,7 @@
 
 Generate HTML from virtual DOM:
 
-```
+```cirru
 make-html (div $ {})
 ; "<div></div>"
 ```

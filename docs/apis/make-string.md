@@ -2,7 +2,7 @@
 
 Generate HTML from a virtual DOM. Stringified HTML contains a lot of markups, such as `:data-coord`:
 
-```
+```cirru
 make-string (div $ {})
 ; "<div data-coord=\"[]\" data-event=\"#{}\"></div>"
 ```

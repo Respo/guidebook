@@ -2,7 +2,7 @@
 
 `render!` comes with side effects, it renders virtual to the mount pointer:
 
-```
+```cirru
 render! target
   comp-container @global-store
   , dispatch!

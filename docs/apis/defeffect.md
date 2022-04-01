@@ -2,7 +2,7 @@
 
 Add effects:
 
-```
+```cirru
 defeffect effect-a (a b) (action el at-place?)
   case-default action
     do
@@ -26,7 +26,7 @@ defcomp comp-a (x y z)
 Notice that to add effects into component, we need to use a vector.
 So it's also possible to add multiple effects here:
 
-```
+```cirru
 []
   defeffect-a a b
   defeffect-b c d
