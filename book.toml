@@ -2,7 +2,11 @@
 [book]
 title = "Calcit Guide"
 authors = [ "Jon" ]
+src = "docs"
 
 [output.html]
 
 [output.linkcheck]
+
+[build]
+create-missing = false
