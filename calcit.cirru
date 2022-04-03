@@ -874,11 +874,6 @@
                     |j $ {} (:type :leaf) (:by |root) (:at 1499755354983) (:text |app.schema)
                     |r $ {} (:type :leaf) (:by |root) (:at 1499755354983) (:text |:as)
                     |v $ {} (:type :leaf) (:by |root) (:at 1499755354983) (:text |schema)
-                |zD $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1646494001394)
-                  :data $ {}
-                    |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494001394) (:text "|\"highlight.js/lib/languages/clojure")
-                    |b $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494001394) (:text |:default)
-                    |h $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494001394) (:text |clojure-lang)
                 |yj $ {} (:type :expr) (:by |root) (:at 1507399674125)
                   :data $ {}
                     |j $ {} (:type :leaf) (:by |root) (:at 1507399678694) (:text |reel.util)
@@ -904,11 +899,13 @@
                     |j $ {} (:type :leaf) (:by |root) (:at 1527788304925) (:text |app.config)
                     |r $ {} (:type :leaf) (:by |root) (:at 1527788306048) (:text |:as)
                     |v $ {} (:type :leaf) (:by |root) (:at 1527788306884) (:text |config)
-                |yz $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1646494008602)
+                |yz $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1648960484486)
                   :data $ {}
-                    |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494008602) (:text "|\"highlight.js")
-                    |b $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494008602) (:text |:default)
-                    |h $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494008602) (:text |hljs)
+                    |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1648960484486) (:text |docs-workflow.config)
+                    |b $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1648960484486) (:text |:refer)
+                    |h $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1648960484486)
+                      :data $ {}
+                        |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1648960484486) (:text |register-languages!)
                 |T $ {} (:type :leaf) (:by |root) (:at 1499755354983) (:text |:require)
                 |j $ {} (:type :expr) (:at 1499755354983)
                   :data $ {}
@@ -932,11 +929,6 @@
                     |v $ {} (:type :expr) (:at 1499755354983)
                       :data $ {}
                         |j $ {} (:type :leaf) (:by |root) (:at 1499755354983) (:text |updater)
-                |z $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1646493995947)
-                  :data $ {}
-                    |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646493995947) (:text "|\"highlight.js/lib/languages/bash")
-                    |b $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646493995947) (:text |:default)
-                    |h $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646493995947) (:text |bash-lang)
         :defs $ {}
           |render-app! $ {} (:type :expr) (:at 1499755354983)
             :data $ {}
@@ -1007,12 +999,9 @@
                       |r $ {} (:type :leaf) (:by |root) (:at 1507399787471) (:text |schema/store)
           |main! $ {} (:type :expr) (:at 1499755354983)
             :data $ {}
-              |sT $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1646494015483)
+              |sj $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1648960476301)
                 :data $ {}
-                  |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494026927) (:text |hljs)
-                  |b $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494015483) (:text "|\"bash")
-                  |h $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494015483) (:text |bash-lang)
-                  |D $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494029494) (:text |.!registerLanguage)
+                  |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1648960476301) (:text |register-languages!)
               |yD $ {} (:type :expr) (:by |root) (:at 1507461684494)
                 :data $ {}
                   |T $ {} (:type :leaf) (:by |root) (:at 1507461739167) (:text |listen-devtools!)
@@ -1076,12 +1065,6 @@
               |j $ {} (:type :leaf) (:by |root) (:at 1499755354983) (:text |main!)
               |r $ {} (:type :expr) (:at 1499755354983)
                 :data $ {}
-              |s $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1646494015483)
-                :data $ {}
-                  |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494019582) (:text |hljs)
-                  |b $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494015483) (:text "|\"clojure")
-                  |h $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494015483) (:text |clojure-lang)
-                  |D $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1646494021394) (:text |.!registerLanguage)
               |t $ {} (:type :expr) (:by |rJG4IHzWf) (:at 1544874433785)
                 :data $ {}
                   |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1544874434638) (:text |println)
