@@ -1,2 +1,8 @@
 
 @import url("@calcit/docs-workflow/assets/main.css");
+
+p img {
+  max-width: 100%;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
