@@ -78,3 +78,6 @@ Internally, a definition of `respo.app.comp.task/style-done` generates className
 
 Since it's not a GC-based solution, `<style>..</style>` created before hot code swapping remains in the DOM tree and will alway occupy memory. This solution is far from perfect, but it's supposed to cover current needs in Respo.
 
+### Node.js rendering
+
+During HTML rendering in Node.js , styles are collected in a list in `respo.css/*style-list-in-nodejs`. It's an unstable design but you can get styles from it.
