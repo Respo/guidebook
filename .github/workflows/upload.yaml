@@ -59,24 +59,20 @@ jobs:
 
     # also need to upload mdbook
 
-    - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
-      id: ACTIONS_ALLOW_UNSECURE_COMMANDS
-      run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+    - uses: supplypike/setup-bin@v3
+      with:
+        uri: 'https://github.com/rust-lang/mdBook/releases/download/v0.4.14/mdbook-v0.4.14-x86_64-unknown-linux-gnu.tar.gz'
+        name: 'mdbook'
+        version: '0.4.14'
 
-    - name: curl mdbook.tar.gz
-      run: curl -L https://github.com/rust-lang/mdBook/releases/download/v0.4.14/mdbook-v0.4.14-x86_64-unknown-linux-gnu.tar.gz > ./mdbook.tar.gz
-
-    - name: curl linkcheck
-      run: curl -L https://github.com/Michael-F-Bryan/mdbook-linkcheck/releases/download/v0.7.6/mdbook-linkcheck.x86_64-unknown-linux-gnu.zip > ./linkcheck.zip
-
-    - name: tar mdbook
-      run: tar -zxvf ./mdbook.tar.gz && unzip -n ./linkcheck.zip && chmod +x mdbook-linkcheck
-
-    - name: trick path
-      run: echo "::add-path::$GITHUB_WORKSPACE/"
+    - uses: supplypike/setup-bin@v3
+      with:
+        uri: 'https://github.com/Michael-F-Bryan/mdbook-linkcheck/releases/download/v0.7.6/mdbook-linkcheck.x86_64-unknown-linux-gnu.zip'
+        name: 'mdbook-linkcheck'
+        version: '0.7.6'
 
     - name: mdbook build
-      run: ./mdbook build && mv -v book/html/index.html book/html/mdbook.html
+      run: mdbook build && mv -v book/html/index.html book/html/mdbook.html
 
     - name: Deploy to server
       id: deploy-mdbook
