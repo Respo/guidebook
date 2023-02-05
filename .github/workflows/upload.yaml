@@ -57,7 +57,11 @@ jobs:
       run: echo "${{ steps.deploy.outputs.status }}"
 
 
-    # also need to upload mddook
+    # also need to upload mdbook
+
+    - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+      id: ACTIONS_ALLOW_UNSECURE_COMMANDS
+      run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
 
     - name: curl mdbook.tar.gz
       run: curl -L https://github.com/rust-lang/mdBook/releases/download/v0.4.14/mdbook-v0.4.14-x86_64-unknown-linux-gnu.tar.gz > ./mdbook.tar.gz
