@@ -104,8 +104,6 @@
                   :content $ load-doc "\"guide/server-rendering.md"
                 {} (:title "\"Trouble Shooting") (:key :trouble-shooting)
                   :content $ load-doc "\"guide/trouble-shooting.md"
-                {} (:title "\"SSR") (:key :ssr)
-                  :content $ load-doc "\"guide/SSR.md"
             {} (:title "\"API") (:key :api)
               :content $ load-doc "\"api.md"
               :children $ []

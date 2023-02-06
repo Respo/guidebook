@@ -19,7 +19,6 @@
   - [Base Components](guide/base-components.md)
   - [Server Rendering](guide/server-rendering.md)
   - [Trouble Shooting](guide/trouble-shooting.md)
-  - [SSR](guide/SSR.md)
 - [API](./api.md)
   - [`defcomp`](apis/defcomp.md)
   - [`div`](apis/div.md)
