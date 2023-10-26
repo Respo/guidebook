@@ -18,10 +18,10 @@
     "@cirru/parser.ts" "^0.0.5"
     "@cirru/writer.ts" "^0.1.3"
 
-"@calcit/procs@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@calcit/procs/-/procs-0.8.0.tgz#ce682f5d016e2ebfa25cf2dd1852bfcccb64bb86"
-  integrity sha512-fLnsR0MAP4W2TsJ3ftVsO51RyudZoMCVEfsxjoaw5FAg6m09YgDDfkWKElNDQwljsHcV8ZmiyCdZpJLCEmdEkw==
+"@calcit/procs@^0.8.9":
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/@calcit/procs/-/procs-0.8.9.tgz#090d18aba5a9f3d20fa562d34f5640de764934f1"
+  integrity sha512-xG7gmTZv+FUwNd592n84Lo2jTjvVSY18fJwPy9R55qP3AJFnKQkD+UjqNo9EKffWZKWEF3jAkkOMfuRNQMmeag==
   dependencies:
     "@calcit/ternary-tree" "0.0.23"
     "@cirru/parser.ts" "^0.0.6"
@@ -253,10 +253,10 @@ fsevents@~2.3.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
-github-markdown-css@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/github-markdown-css/-/github-markdown-css-5.2.0.tgz#9f9e30f16cbc1d3b76110667b7c36ca3d96c9cdc"
-  integrity sha512-hq5RaCInSUZ48bImOZpkppW2/MT44StRgsbsZ8YA4vJFwLKB/Vo3k7R2t+pUGqO+ThG0QDMi96TewV/B3vyItg==
+github-markdown-css@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/github-markdown-css/-/github-markdown-css-5.3.0.tgz#b150b1a52c18692c576072316ca89a0942df034a"
+  integrity sha512-WI+6puEQJnC8JoIveA8R8PiwH/wJwlneE88j7Q+ojMfzWcqRJF01vrVvo8PoWc6Y4aDF+kG4WGZi3RHXymyzJg==
 
 global@^4.3.0:
   version "4.4.0"
@@ -266,10 +266,10 @@ global@^4.3.0:
     min-document "^2.19.0"
     process "^0.11.10"
 
-highlight.js@^11.8.0:
-  version "11.8.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.8.0.tgz#966518ea83257bae2e7c9a48596231856555bb65"
-  integrity sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==
+highlight.js@^11.9.0:
+  version "11.9.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.9.0.tgz#04ab9ee43b52a41a047432c8103e2158a1b8b5b0"
+  integrity sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==
 
 individual@^3.0.0:
   version "3.0.0"
@@ -309,9 +309,9 @@ picocolors@^1.0.0:
   integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
 
 postcss@^8.4.27:
-  version "8.4.29"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.29.tgz#33bc121cf3b3688d4ddef50be869b2a54185a1dd"
-  integrity sha512-cbI+jaqIeu/VGqXEarWkRCCffhjgXc0qjBtXpqJhTBohMUjUQnbBr0xqX3vEKudc4iviTewcJo5ajcec5+wdJw==
+  version "8.4.31"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.31.tgz#92b451050a9f914da6755af352bdc0192508656d"
+  integrity sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==
   dependencies:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
@@ -331,9 +331,9 @@ remarkable@^2.0.1:
     autolinker "^3.11.0"
 
 rollup@^3.27.1:
-  version "3.29.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.29.1.tgz#ba53a179d46ac3cd79e162dca6ab70d93cd26f78"
-  integrity sha512-c+ebvQz0VIH4KhhCpDsI+Bik0eT8ZFEVZEYw0cGMVqIP8zc+gnwl7iXCamTw7vzv2MeuZFZfdx5JJIq+ehzDlg==
+  version "3.29.4"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.29.4.tgz#4d70c0f9834146df8705bfb69a9a19c9e1109981"
+  integrity sha512-oWzmBZwvYrU0iJHtDmhsm662rC15FRXmcjCk1xD771dFDx5jJ02ufAQQTn0etB2emNk4J9EZg/yWKpsn9BWGRw==
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -371,10 +371,10 @@ virtual-dom@^2.1.1:
     x-is-array "0.1.0"
     x-is-string "0.1.0"
 
-vite@^4.4.9:
-  version "4.4.9"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-4.4.9.tgz#1402423f1a2f8d66fd8d15e351127c7236d29d3d"
-  integrity sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==
+vite@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-4.5.0.tgz#ec406295b4167ac3bc23e26f9c8ff559287cff26"
+  integrity sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==
   dependencies:
     esbuild "^0.18.10"
     postcss "^8.4.27"
