@@ -1,7 +1,11 @@
 {
+  "packageManager": "yarn@4.12.0",
   "dependencies": {
     "@calcit/docs-workflow": "^0.0.7",
-    "@calcit/procs": "^0.8.9"
+    "@calcit/procs": "^0.13.27"
+  },
+  "resolutions": {
+    "@cirru/parser.ts": "0.0.9"
   },
   "devDependencies": {
     "bottom-tip": "^0.1.5",
