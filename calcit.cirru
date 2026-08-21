@@ -77,7 +77,11 @@
           :schema $ :: 'Dynamic
         |render-app! $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            defn render-app! () $ render! mount-target (comp-container @*reel schema/docs) dispatch!
+            defn render-app! ()
+              let
+                  target $ .?!querySelector js/document |.app
+                if (js-present? target)
+                  render! target (comp-container @*reel $ unsafe-coerce schema/docs 'Dynamic) dispatch!
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
