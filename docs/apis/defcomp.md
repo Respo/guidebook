@@ -10,4 +10,4 @@ defcomp comp-demo (content)
     <> content
 ```
 
-`defcomp` is a Macro(https://github.com/Respo/respo.calcit/blob/master/compact.cirru#L1295) transforming code to another function with effects extracted.
+`defcomp` is a Macro(https://github.com/Respo/respo.calcit/blob/master/calcit.cirru#L1295) transforming code to another function with effects extracted.

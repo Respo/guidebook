@@ -1,5 +1,5 @@
 
-{} (:about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `cr query` to inspect and `cr edit`/`cr tree` to modify. Run `cr docs agents --full` first. Manual edits must follow format and schema conventions, then run `cr edit format`.") (:package |app)
+{} (:about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --full` first. Manual edits must follow format and schema conventions, then run `calcit edit format`.") (:package |app)
   :entries $ {}
     :default $ {} (:description |) (:init-fn 'app.main/main!) (:mode :native) (:reload-fn 'app.main/reload!)
       :feature-policy $ {}
@@ -10,7 +10,8 @@
       :defs $ {}
         |dev? $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            def dev? $ = |dev (option:unwrap-or (get-env |mode) |release)
+            def dev? $ = |dev
+              option:unwrap-or (get-env |mode) |release
           :examples $ []
           :schema $ :: 'Dynamic
         |site $ %{} 'CodeEntry (:doc |)
@@ -77,11 +78,12 @@
           :schema $ :: 'Dynamic
         |render-app! $ %{} 'CodeEntry (:doc |)
           :code $ quote
-            defn render-app! ()
-              let
-                  target $ .?!querySelector js/document |.app
-                if (js-present? target)
-                  render! target (comp-container @*reel $ unsafe-coerce schema/docs 'Dynamic) dispatch!
+            defn render-app! () $ let
+                target $ .?!querySelector js/document |.app
+              if (js-present? target)
+                render! target
+                  comp-container @*reel $ unsafe-coerce schema/docs 'Dynamic
+                  , dispatch!
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
@@ -155,7 +157,7 @@
                     :content $ load-doc |apis/create-element.md
                   {} (:title |render!) (:key :render!)
                     :content $ load-doc |apis/render_.md
-                  {} (:title |clear-cache!) (:key :clear-cacher!)
+                  {} (:title |clear-cache!) (:key :clear-cache!)
                     :content $ load-doc |apis/clear-cache_.md
                   {} (:title |realize-ssr!) (:key :realize-ssr!)
                     :content $ load-doc |apis/realize-ssr_.md
