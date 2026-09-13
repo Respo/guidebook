@@ -1,7 +1,10 @@
 
-{} (:about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --full` first. Manual edits must follow format and schema conventions, then run `calcit edit format`.") (:package |app)
-  :entries $ {}
-    :default $ {} (:description |) (:init-fn 'app.main/main!) (:mode :js) (:reload-fn 'app.main/reload!)
+{}
+  :about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --contract` before mutations; use `--full` for first orientation or changed contract digest. Manual edits must follow format and schema conventions, then run `calcit edit format`."
+  :package |app
+  :entries $ {} $ :default
+    {} (:description |) (:init-fn 'app.main/main!) (:mode :js)
+      :reload-fn 'app.main/reload!
       :feature-policy $ {}
       :modules $ [] |respo.calcit/ |lilac/ |memof/ |respo-ui.calcit/ |respo-markdown.calcit/ |reel.calcit/ |respo-router.calcit/ |docs-workflow/ |js-ffi/
       :type-slots $ {}
@@ -9,66 +12,62 @@
     'app.config $ %{} 'FileEntry
       :defs $ {}
         'dev? $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def dev? $ = |dev
-              option:unwrap-or (get-env |mode) |release
+          :code $ quote $ def dev?
+            = |dev $ option:unwrap-or (get-env |mode) |release
           :examples $ []
           :schema $ :: 'Dynamic
         'site $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def site $ {} (:storage-key |workflow)
+          :code $ quote $ def site
+            {} $ :storage-key |workflow
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote (ns app.config)
+        :code $ quote $ ns app.config
     'app.main $ %{} 'FileEntry
       :defs $ {}
         '*reel $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defatom *reel $ -> reel-schema/reel (assoc :base schema/store) (assoc :store schema/store)
+          :code $ quote $ defatom *reel
+            -> reel-schema/reel (assoc :base schema/store) (assoc :store schema/store)
           :examples $ []
           :schema $ :: 'Dynamic
         'dispatch! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn dispatch! (op)
-              when config/dev? $ match op
-                (:states _ _) &unit
-                _ $ js/console.log |Dispatch: op
-              reset! *reel $ reel-updater updater @*reel op
+          :code $ quote $ defn dispatch! (op)
+            when config/dev? $ match op
+              (:states _ _) &unit
+              _ $ js/console.log |Dispatch: op
+            reset! *reel $ reel-updater updater @*reel op
           :examples $ []
           :schema $ :: 'Dynamic
         'main! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn main! () (register-languages!)
-              println "|Running mode:" $ if config/dev? |dev |release
-              if config/dev? $ load-console-formatter!
-              render-app!
-              add-watch *reel :changes $ fn (reel prev) (render-app!)
-              listen-devtools! |k dispatch!
-              js/window.addEventListener |beforeunload $ fn (event) (persist-storage!)
-              flipped js/setInterval 60000 persist-storage!
-              ; let
-                (raw (js/localStorage.getItem (:storage-key config/site)))
-                when (some? raw)
-                  dispatch! :hydrate-storage $ parse-cirru-edn raw
-              println "|App started."
+          :code $ quote $ defn main! ()
+            register-languages!
+            println "|Running mode:" $ if config/dev? |dev |release
+            if config/dev? $ load-console-formatter!
+            render-app!
+            add-watch *reel :changes $ fn (reel prev) (render-app!)
+            listen-devtools! |k dispatch!
+            js/window.addEventListener |beforeunload $ fn (event) (persist-storage!)
+            flipped js/setInterval 60000 persist-storage!
+            ; let
+              (raw (js/localStorage.getItem (:storage-key config/site)))
+              when (some? raw)
+                dispatch! :hydrate-storage $ parse-cirru-edn raw
+            println "|App started."
           :examples $ []
           :schema $ :: 'Dynamic
         'mount-target $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def mount-target $ .!querySelector js/document |.app
+          :code $ quote $ def mount-target (.!querySelector js/document |.app)
           :examples $ []
           :schema $ :: 'Dynamic
         'persist-storage! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn persist-storage! () (js/console.log |persist)
-              js/localStorage.setItem (:storage-key config/site)
-                format-cirru-edn $ :store @*reel
+          :code $ quote $ defn persist-storage! () (js/console.log |persist)
+            js/localStorage.setItem (:storage-key config/site)
+              format-cirru-edn $ :store @*reel
           :examples $ []
           :schema $ :: 'Dynamic
         'reload! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn reload! () $ if (nil? build-errors)
+          :code $ quote $ defn reload! ()
+            if (nil? build-errors)
               do (remove-watch *reel :changes) (clear-cache!)
                 add-watch *reel :changes $ fn (reel prev) (render-app!)
                 reset! *reel $ refresh-reel @*reel schema/store updater
@@ -77,8 +76,8 @@
           :examples $ []
           :schema $ :: 'Dynamic
         'render-app! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn render-app! () $ let
+          :code $ quote $ defn render-app! ()
+            let
                 target $ .?!querySelector js/document |.app
               if (js-present? target)
                 render! target
@@ -87,8 +86,8 @@
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns app.main $ :require
+        :code $ quote $ ns app.main
+          :require
             respo.core :refer $ render! clear-cache!
             docs-workflow.comp.container :refer $ comp-container
             app.updater :refer $ updater
@@ -103,8 +102,8 @@
     'app.schema $ %{} 'FileEntry
       :defs $ {}
         'docs $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def docs $ []
+          :code $ quote $ def docs
+            []
               {} (:title |Home) (:key :home)
                 :content $ load-doc |home.md
                 :children $ []
@@ -132,15 +131,21 @@
                     :content $ load-doc |apis/defeffect.md
                   {} (:title "|List Rendering") (:key :render-list)
                     :content $ load-doc |guide/render-list.md
-                  {} (:title "|Component States") (:key :component-states)
+                  {}
+                    :title "|Component States"
+                    :key :component-states
                     :content $ load-doc |guide/component-states.md
                   {} (:title "|Hot Swapping") (:key :hot-swapping)
                     :content $ load-doc |guide/hot-swapping.md
                   {} (:title "|Base Components") (:key :base-components)
                     :content $ load-doc |guide/base-components.md
-                  {} (:title "|Server Rendering") (:key :server-rendering)
+                  {}
+                    :title "|Server Rendering"
+                    :key :server-rendering
                     :content $ load-doc |guide/server-rendering.md
-                  {} (:title "|Trouble Shooting") (:key :trouble-shooting)
+                  {}
+                    :title "|Trouble Shooting"
+                    :key :trouble-shooting
                     :content $ load-doc |guide/trouble-shooting.md
               {} (:title |API) (:key :api)
                 :content $ load-doc |api.md
@@ -177,11 +182,17 @@
                     :content $ load-doc |apis/purify-element.md
                   {} (:title |mute-element) (:key :mute-element)
                     :content $ load-doc |apis/mute-element.md
-                  {} (:title |find-element-diffs) (:key :find-element-diffs)
+                  {}
+                    :title |find-element-diffs
+                    :key :find-element-diffs
                     :content $ load-doc |apis/find-element-diffs.md
-                  {} (:title |apply-dom-changes) (:key :apply-dom-changes)
+                  {}
+                    :title |apply-dom-changes
+                    :key :apply-dom-changes
                     :content $ load-doc |apis/apply-dom-changes.md
-                  {} (:title |activate-instance!) (:key :activate-instance)
+                  {}
+                    :title |activate-instance!
+                    :key :activate-instance
                     :content $ load-doc |apis/activate-instance.md
                   {} (:title |patch-instance!) (:key :patch-instance)
                     :content $ load-doc |apis/patch-instance.md
@@ -190,36 +201,31 @@
           :examples $ []
           :schema $ :: 'Dynamic
         'load-doc $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defmacro load-doc (filename)
-              read-file $ str |docs/ filename
+          :code $ quote $ defmacro load-doc (filename)
+            read-file $ str |docs/ filename
           :examples $ []
-          :schema $ :: 'Macro
-            {}
-              :capabilities $ #{} :fs-read
-              :expansion $ :: 'Expr 'String
-              :required $ [] 'Syntax
+          :schema $ :: 'Macro $ {}
+            :capabilities $ #{} :fs-read
+            :expansion $ :: 'Expr 'String
+            :required $ [] 'Syntax
         'store $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def store $ {}
-              :states $ {}
-                :cursor $ []
+          :code $ quote $ def store
+            {} $ :states $ {}
+              :cursor $ []
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote (ns app.schema)
+        :code $ quote $ ns app.schema
     'app.updater $ %{} 'FileEntry
-      :defs $ {}
-        'updater $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn updater (store op op-id op-time)
-              match op
-                (:states cursor s) (update-states store cursor s)
-                (:hydrate-storage data) data
-                _ $ do (eprintln "|unknown op:" op) store
+      :defs $ {} $ 'updater
+        %{} 'CodeEntry (:doc |)
+          :code $ quote $ defn updater (store op op-id op-time)
+            match op
+              (:states cursor s) (update-states store cursor s)
+              (:hydrate-storage data) data
+              _ $ do (eprintln "|unknown op:" op) store
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns app.updater $ :require
-            respo.cursor :refer $ update-states
+        :code $ quote $ ns app.updater
+          :require $ respo.cursor :refer $ update-states
