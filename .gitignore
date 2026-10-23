@@ -10,3 +10,4 @@ book/
 
 .DS_Store
 .yarn/install-state.gz
+.calcit/
