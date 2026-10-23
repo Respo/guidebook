@@ -1,0 +1,65 @@
+name: Independent Respo Guidebook migration acceptance
+on:
+  push:
+    branches: [prepare/respo-guidebook031]
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6.5.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: corepack enable && corepack prepare yarn@4.18.0 --activate
+      - uses: calcit-lang/setup-calcit@v1.5.0
+        with:
+          tools: calcit,caps
+          caps-version: '0.1.1'
+          deps-file: deps.cirru
+      - name: Resolve published formal graph
+        run: |
+          set -euo pipefail
+          test "$(git hash-object calcit.cirru)" = ebef5e6ff300184e524f7043ae78c4bb82a51861
+          caps --strict --ci
+          yarn install --immutable
+          caps verify --toolchain
+      - name: Apply reviewed structured migration
+        run: |
+          set -euo pipefail
+          calcit -v > acceptance/version.txt
+          calcit query config > acceptance/config.txt
+          calcit edit transaction --file acceptance/operations.json --dry-run --format json > acceptance/preview.json
+          calcit edit transaction --file acceptance/operations.json --expect-revision "$(jq -r .scoped_revision acceptance/preview.json)" --format json > acceptance/applied.json
+          calcit edit format
+          git hash-object calcit.cirru > acceptance/source-blob.txt
+          cp calcit.cirru acceptance/calcit.cirru
+          calcit analyze program-diff HEAD --format json > acceptance/program-diff.json
+      - name: Check all definitions and full strict
+        run: |
+          set -euo pipefail
+          calcit --check-only --all-defs --keep-going --format json > acceptance/all.json
+          calcit --check-only --ns app.main --ns app.schema --ns app.config --ns app.updater --format json > acceptance/public.json
+          calcit fix --workflow strict --verify --format json > acceptance/strict.json
+          jq -e '.data.workflow.status == "passed" and .diagnostics == []' acceptance/strict.json
+          calcit test --summary-only --format json > acceptance/tests.json
+          calcit analyze weak-types --only coverage --format json > acceptance/coverage.json
+          calcit analyze weak-types --only deprecated-call --summary-only --format json | jq -e '.data.summary.calls == 0'
+          calcit analyze weak-types --only dynamic-method --summary-only --format json | jq -e '.data.summary.findings == 0'
+      - name: Compile original document corpus
+        run: |
+          set -euo pipefail
+          VITE_BASE_URL=./ yarn build
+          cp -R dist acceptance/
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: respo-guidebook-source-${{ github.run_id }}
+          path: acceptance
+          retention-days: 7
+          if-no-files-found: error
