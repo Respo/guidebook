@@ -1,3 +1,7 @@
+> Historical tutorial: the old macro expansions, JavaScript access and dispatch
+> examples below predate current typed APIs. Start with **Guide** in the sidebar
+> for formal 0.30.1 contracts. This is not a standalone checked current app.
+
 Want to explore by yourself?
 
 - Minimal App <https://github.com/Respo/minimal-respo>
