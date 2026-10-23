@@ -128,7 +128,7 @@
     "--input-format",
     "json-ast",
     "--code",
-    "[\"defn\",\"reload!\",[],[\"if\",[\"nil?\",\"build-errors\"],[\"do\",[\"remove-watch!\",\"*reel\",\":changes\"],[\"clear-cache!\"],[\"add-watch!\",\"*reel\",\":changes\",[\"fn\",[\"reel\",\"prev\"],[\"render-app!\"]]],[\"reset!\",\"*reel\",[\"typed/refresh\",\"updater\",\"@*reel\",\"schema/store\"]],[\"hud!\",\"|ok~\",\"|Ok\"]],[\"hud!\",\"|error\",\"build-errors\"]]]"
+    "[\"defn\",\"reload!\",[],[\"if\",[\"nil?\",\"build-errors\"],[\"do\",[\"remove-watch!\",\"*reel\",\":changes\"],[\"clear-cache!\"],[\"add-watch!\",\"*reel\",\":changes\",[\"fn\",[\"reel\",\"prev\"],[\"render-app!\"]]],[\"reset!\",\"*reel\",[\"typed/refresh\",\"updater\",\"@*reel\",\"schema/store\"]],[\"hud!\",\"|ok~\",\"|Ok\"]],[\"hud!\",\"|error\",\"build-errors\"]],\"&unit\"]"
   ],
   [
     "edit",
