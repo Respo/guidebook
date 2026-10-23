@@ -35,7 +35,7 @@
     "--input-format",
     "json-ast",
     "--code",
-    "[\"{}\",[\":kind\",\":fn\"],[\":return\",\"'Unit\"],[\":args\",[\"[]\",\"'Enum\"]],[\":features\",[\"#{}\",\":js-ffi\"]]]"
+    "[\"::\",\"'Fn\",[\"{}\",[\":return\",\"'Unit\"],[\":args\",[\"[]\",\"'Enum\"]],[\":features\",[\"#{}\",\":js-ffi\"]]]]"
   ],
   [
     "edit",
@@ -54,7 +54,7 @@
     "--input-format",
     "json-ast",
     "--code",
-    "[\"{}\",[\":kind\",\":fn\"],[\":args\",[\"[]\"]],[\":features\",[\"#{}\",\":js-ffi\"]],[\":return\",[\"::\",\"'JsNullish\",\"'respo.dom/DomElement\"]]]"
+    "[\"::\",\"'Fn\",[\"{}\",[\":args\",[\"[]\"]],[\":features\",[\"#{}\",\":js-ffi\"]],[\":return\",[\"::\",\"'JsNullish\",\"'respo.dom/DomElement\"]]]]"
   ],
   [
     "edit",
@@ -73,7 +73,7 @@
     "--input-format",
     "json-ast",
     "--code",
-    "[\"{}\",[\":kind\",\":fn\"],[\":return\",\"'Unit\"],[\":args\",[\"[]\"]],[\":features\",[\"#{}\",\":js-ffi\"]]]"
+    "[\"::\",\"'Fn\",[\"{}\",[\":return\",\"'Unit\"],[\":args\",[\"[]\"]],[\":features\",[\"#{}\",\":js-ffi\"]]]]"
   ],
   [
     "edit",
@@ -92,7 +92,7 @@
     "--input-format",
     "json-ast",
     "--code",
-    "[\"{}\",[\":kind\",\":fn\"],[\":return\",\"'docs-workflow.schema/Store\"],[\":args\",[\"[]\",\"'docs-workflow.schema/Store\",\"'docs-workflow.schema/Op\",\"'String\",\"'Number\"]]]"
+    "[\"::\",\"'Fn\",[\"{}\",[\":return\",\"'docs-workflow.schema/Store\"],[\":args\",[\"[]\",\"'docs-workflow.schema/Store\",\"'docs-workflow.schema/Op\",\"'String\",\"'Number\"]]]]"
   ],
   [
     "edit",
