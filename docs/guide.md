@@ -1,7 +1,8 @@
-# Guide: Calcit 0.30.1
+# Guide: Calcit 0.31.0
 
-This site pairs formal Calcit CLI / `@calcit/procs` **0.30.1**, Respo
-**0.16.124**, Reel **0.6.41** and Docs Workflow **0.0.37**. Use `calcit.cirru`
+This site pairs formal Calcit CLI / `@calcit/procs` **0.31.0**, Respo
+**0.17.0-alpha.2**, Reel **0.7.0-alpha.2** and Docs Workflow **0.0.38**.
+The CLI/runtime are formal releases; the module graph still includes prereleases. Use `calcit.cirru`
 for source and `deps.cirru` for published module versions; do not restore
 `compact.cirru` or `package.cirru`, or mix this runtime with an alpha CLI.
 
@@ -13,7 +14,7 @@ versions before copying code: upgrading this site does not upgrade other apps.
 
 Use `defref` / `ref` for retained mutable references, and `add-watch!` /
 `remove-watch!` for effectful subscriptions. The historical `defatom`, `atom` and
-unmarked watch names are not recommended spellings. Do not hide a missing type
+unmarked watch names have been removed from the current language. Do not hide a missing type
 relationship with `unsafe-coerce` merely to pass a check.
 
 A native counter illustrates an explicit effectful function contract:
@@ -70,6 +71,6 @@ fragment or certify browser/WebSocket application behavior.
 
 The Beginner Guide and several API chapters are historical design notes. Their
 old macro expansions, direct JavaScript access and operation syntax are not
-copy-ready 0.30.1 code. Consult the paired published module's `calcit query def`
+copy-ready 0.31.0 code. Consult the paired published module's `calcit query def`
 and `query schema` views and the maintained template. Historical examples need
 section-by-section migration, not mechanical renaming without contract checks.
