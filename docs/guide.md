@@ -1,7 +1,8 @@
-# Guide: Calcit 0.30.1
+# Guide: Calcit 0.31.0
 
-This site pairs formal Calcit CLI / `@calcit/procs` **0.30.1**, Respo
-**0.16.124**, Reel **0.6.41** and Docs Workflow **0.0.37**. Use `calcit.cirru`
+This site pairs formal Calcit CLI / `@calcit/procs` **0.31.0**, Respo
+**0.17.0-alpha.2**, Reel **0.7.0-alpha.2** and Docs Workflow **0.0.38**.
+The CLI/runtime are formal releases; the module graph still includes prereleases. Use `calcit.cirru`
 for source and `deps.cirru` for published module versions; do not restore
 `compact.cirru` or `package.cirru`, or mix this runtime with an alpha CLI.
 
@@ -13,7 +14,7 @@ versions before copying code: upgrading this site does not upgrade other apps.
 
 Use `defref` / `ref` for retained mutable references, and `add-watch!` /
 `remove-watch!` for effectful subscriptions. The historical `defatom`, `atom` and
-unmarked watch names are not recommended spellings. Do not hide a missing type
+unmarked watch names have been removed from the current language. Do not hide a missing type
 relationship with `unsafe-coerce` merely to pass a check.
 
 A native counter illustrates an explicit effectful function contract:
@@ -36,12 +37,14 @@ strings and numbers through published JS-FFI adapters; an unchecked cast does
 not prove a JavaScript value has a Calcit schema. Keep JavaScript `bottom-tip`
 `hud!` calls in development reload handlers so errors remain visible on-page.
 
-## Component operations are not application operations
+## Event callbacks and application operations
 
-`respo.core/>>` selects a state branch and carries its cursor. Widget handlers
-receive Respo's widget dispatcher; an application `render!` dispatcher receives
-one operation. Do not copy the two-argument widget dispatcher's type into the
-application entry point.
+`respo.core/>>` selects a state branch and carries its cursor. A Respo event
+handler receives `(event, dispatch!)`; the dispatch function accepts exactly
+one value of the entry's `dispatch-op` type and returns Unit. For state changes,
+package the cursor and new state in one application operation, then validate
+its fields at the app boundary. A two-argument handler or custom
+`on-select(path, d!)` callback does not make `d!` a two-argument dispatcher.
 
 Define an application Op enum and validate incoming state cursors/payloads
 before constructing it. With typed Reel, retain `State<Op, Store>` in a Ref,
@@ -68,8 +71,9 @@ checks, full strict diagnostics, and zero deprecated/dynamic-method findings in
 CI. Both SPA and mdBook are built. These checks do **not** execute every Markdown
 fragment or certify browser/WebSocket application behavior.
 
-The Beginner Guide and several API chapters are historical design notes. Their
+The Beginner Guide, older implementation discussions under Guide, and several API
+chapters retain historical design notes. Their
 old macro expansions, direct JavaScript access and operation syntax are not
-copy-ready 0.30.1 code. Consult the paired published module's `calcit query def`
+copy-ready 0.31.0 code. Consult the paired published module's `calcit query def`
 and `query schema` views and the maintained template. Historical examples need
 section-by-section migration, not mechanical renaming without contract checks.

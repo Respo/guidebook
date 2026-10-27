@@ -1,151 +1,58 @@
 ## Component States
 
-Unlike React, states in Respo is maintained manually for stablility during hot code swapping.
-At first, states is a HashMap inside the store:
+A component state branch is an open Map with a `:cursor` path and optional
+`:data`. The state value can differ between widgets. Keep that heterogeneous
+boundary explicit; decode the fields a widget consumes before using them as a
+business model. A missing Map key returns `Option :none`, not an implicit nil.
+
+`respo.core/>>` selects a branch and extends its cursor. This small example uses
+Tag keys, matching this documentation app's checked `List<Tag>` operation path:
 
 ```cirru
-defatom *store {}
-  :states $ {}
+let
+    states $ {} (:cursor $ []) (:task $ {} (:data |Draft))
+    branch $ respo.core/>> states :task
+  assert= (Option :some $ [] :task) (get branch :cursor)
+  assert= (Option :some |Draft) (get branch :data)
 ```
 
-By design, if states is added, you would a tree:
+A missing branch starts with an empty cursor-bearing Map. Do not replace a
+present false, zero or empty string state with an arbitrary default. Match the
+Option returned by `get`; decode a present value according to the widget's
+actual state shape.
+
+A Respo event handler receives two arguments: the event Map and the application
+dispatch function. That dispatch function accepts **one** entry `dispatch-op`
+value and returns Unit. Two handler arguments do not imply a two-argument
+state dispatcher. Wrap the cursor and new state in the app's single operation:
 
 ```cirru
-{}
-  :states $ {}
-    :data $ {}
-    :todolist $ {}
-      :data $ {}
-        :input "|xyz..."
-      "task-1-id" $ {}
-        :data $ {}
-          :draft "|xxx..."
-      "task-2-id" $ {}
-        :data $ {}
-          :draft "|yyy..."
-      "task-2-id" $ {}
-        :data $ {}
-          :draft "|zzz.."
+fn (event d!)
+  d! $ :: :states cursor new-state
+  , &unit
 ```
 
-`:data` is a special field for holding state of each component.
-It has to be a tree since Virtual DOM is a tree.
-You also notice that its structure is simpler than a DOM tree, it only contains states.
+This is a callback fragment in a context that already provides `cursor` and
+`new-state`, not a standalone program. This site's application boundary checks
+the raw Enum and payload before constructing the published nominal Op.
+A custom callback such as `on-select(path, d!)` can also have two arguments;
+that does not change the arity of the `d!` value passed to it.
 
-`respo.core/>>` is the "picking branch" function. It also maintains a `:cursor` field.
-
-When you call `(>> states :todolist)`, you get new `states` variable for a child component:
+For the tree update itself, use the current three-argument helper:
 
 ```cirru
-{}
-  ; "generated cursor, nil at top level"
-  :cursor $ [] :todolist
-  ; "state at current level"
-  :data $ {}
-    :input "|xyz..."
-
-  ; states for children
-  "task-1-id" $ {}
-    :data $ {}
-      :draft "|xxx..."
-  "task-2-id" $ {}
-    :data $ {}
-      :draft "|yyy..."
-  "task-2-id" $ {}
-    :data $ {}
-      :draft "|zzz.."
+let
+    updated $ respo.cursor/update-state-tree ({}) ([] :task) |Edited
+  assert= ({} $ :task $ {} (:data |Edited)) updated
 ```
 
-Then you call `(>> states "task-1-id")` and you get new `states` for child "task-1":
+`update-state-tree` and `respo.cursor/update-states` expose open boundaries;
+`update-states` also takes three arguments: store, cursor, new state. Their
+results are not automatically proof of a nominal Store. This app's published
+Docs Workflow updater checks the updated state Map before assigning it into
+Store. Its app dispatcher validates cursors and hydrated stores before building
+`docs-workflow.schema/Op`, then typed Reel records that operation.
 
-```cirru
-{}
-  ; "generated cursor"
-  :cursor $ [] :todolist "|task-1-id"
-
-  ; "state of task-1"
-  :data $ {}
-    :draft "|xxx..."
-```
-
-For state inside each component, it's `nil` at first.
-You want to have an initial state, use `or` to provide one.
-
-```cirru
-defcomp comp-task (states)
-  let
-      cursor (:cursor states)
-      state $ or (:data states) $ {}
-        :draft "|empty"
-    (div {}))
-```
-
-By accessing `(:data states)`, you get `nil`, so `&{} :draft "|empty"` is used.
-After there's data in states, you get data that was set.
-
-Then you want to update component s:tate
-
-```cirru
-defcomp comp-task (states)
-  let
-      cursor (:cursor states)
-      state $ or (:data states) $ {}
-        :draft "|empty"
-    div $ {}
-      :on-click $ fn (e dispatch!)
-        dispatch! cursor (assoc state :draft "|New state")
-```
-
-So `(dispatch! cursor state)` sends the new state.
-
-The last step to to update global states with `respo.cursor/update-states`.
-Internally `(dispatch! cursor op-data)` will be transformed to `(dispatch! :states ([] cursor op-data))`.
-And then in `updater` you add:
-
-```cirru
-case-default op
-  ; other actions
-  do store
-
-  ; "where op-data is [cursor new-state]"
-  :states (update-states store op-data)
-```
-
----
-
-Let's wrap it. First we have empty states inside store:
-
-```cirru
-{}
-  :states $ {}
-```
-
-And it is passed to `(comp-todolist (>> states :todolist) data)`,
-and then passed to `(comp-task (>> states (:id task)) task)`.
-
-In `comp-todolist`, `(:data states)` provides component state, `(:cursor states)` provides its cursor.
-Call `(dispatch! cursor {:input "|New draft"})` and global store will become:
-
-```cirru
-{}
-  :states $ {}
-    :todolist $ {}
-      :data $ {}
-        :input "|New draft"
-
-```
-
-In `comp-task` of "task-1", you also get `state` and `cursor`, so call `(dispatch! cursor {:draft "New text"})` you will get:
-
-```cirru
-{}
-  :states $ {}
-    :todolist $ {}
-      :data $ {}
-        :input "|New draft"
-      "task-1-id" $ {}
-        :data $ {}
-          :draft "|New text"
-```
-
-And that's how Respo states is maintained.
+Use the actual checked `app.main/dispatch!` and `docs-workflow.updater/updater`
+definitions as integration references. The removed `case-default` example and
+the old two-argument `update-states` call are not current alternatives.
