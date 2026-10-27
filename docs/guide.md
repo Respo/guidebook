@@ -37,12 +37,14 @@ strings and numbers through published JS-FFI adapters; an unchecked cast does
 not prove a JavaScript value has a Calcit schema. Keep JavaScript `bottom-tip`
 `hud!` calls in development reload handlers so errors remain visible on-page.
 
-## Component operations are not application operations
+## Event callbacks and application operations
 
-`respo.core/>>` selects a state branch and carries its cursor. Widget handlers
-receive Respo's widget dispatcher; an application `render!` dispatcher receives
-one operation. Do not copy the two-argument widget dispatcher's type into the
-application entry point.
+`respo.core/>>` selects a state branch and carries its cursor. A Respo event
+handler receives `(event, dispatch!)`; the dispatch function accepts exactly
+one value of the entry's `dispatch-op` type and returns Unit. For state changes,
+package the cursor and new state in one application operation, then validate
+its fields at the app boundary. A two-argument handler or custom
+`on-select(path, d!)` callback does not make `d!` a two-argument dispatcher.
 
 Define an application Op enum and validate incoming state cursors/payloads
 before constructing it. With typed Reel, retain `State<Op, Store>` in a Ref,
@@ -69,7 +71,8 @@ checks, full strict diagnostics, and zero deprecated/dynamic-method findings in
 CI. Both SPA and mdBook are built. These checks do **not** execute every Markdown
 fragment or certify browser/WebSocket application behavior.
 
-The Beginner Guide and several API chapters are historical design notes. Their
+The Beginner Guide, older implementation discussions under Guide, and several API
+chapters retain historical design notes. Their
 old macro expansions, direct JavaScript access and operation syntax are not
 copy-ready 0.31.0 code. Consult the paired published module's `calcit query def`
 and `query schema` views and the maintained template. Historical examples need

@@ -7,8 +7,8 @@ Respo 0.17.0-alpha.2、Reel 0.7.0-alpha.2、UI 0.9.0-alpha.2 和 JS-FFI 0.2.5。
 刷新页面，不混用旧 CLI/alpha runtime。UI 0.9 基础样式可能影响外观。源码仅使用
 `calcit.cirru` 与 `deps.cirru`，不生成 compact/package.cirru。
 
-Guide 说明当前 Ref/watch、Option、widget/app dispatch、名义 Store 和宿主边界。
-旧 Beginner Guide/API 仍有历史片段，尚未全部迁移或独立执行；站点构建通过不代表
+Guide 说明当前 Ref/watch、Option、event handler/app dispatch、名义 Store 和宿主边界。
+旧 Beginner Guide、部分 Guide 实现说明和 API 仍有历史片段，尚未全部迁移或独立执行；站点构建通过不代表
 所有旧示例都可用于当前版本。新应用以维护中的模板和已发布接口为准。
 
 ## 开发与验收

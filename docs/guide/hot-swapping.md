@@ -1,27 +1,43 @@
 ## Hot swapping
 
-Hot swapping is done by the compiler. What you need to do is to call `respo.core/clear-cache!` before re-rendering happens:
+Use retained `defref` values and explicit watch effects. The current app keeps
+its typed Reel in `app.main/*reel`; its value is immutable, while the reference
+is mutable. `defatom`, `atom`, `add-watch` and `remove-watch` are retired names.
+Do not add another reference around the initial store.
+
+This is the initialization expression from this site's checked source:
 
 ```cirru
-defn reload! ()
-  ; "clear component caches"
-  clear-cache!
-  ; "rerender DOM tree, I mean, a diff/patch loop"
+defref *reel $ typed/new-reel schema/store
+```
+
+It belongs with the published `reel.typed/State<Op, Store>` schema attached to
+`app.main/*reel`. An isolated excerpt does not carry that schema or its imports;
+inspect the actual definition with `calcit query def 'app.main/*reel'` before reuse.
+
+The successful branch of this app's `reload!` uses the following sequence:
+
+```cirru
+remove-watch! *reel :changes
+clear-cache!
+add-watch! *reel :changes $ fn (reel prev)
   render-app!
-  println "|Code update."
+reset! *reel $ typed/refresh updater @*reel schema/store
 ```
 
-If you don't, in the next rendering phase old element tree would be used if no argument changes found, which means Respo would still use render functions defined previously.
+Clear the component cache before refreshing Reel. Register the new callback
+before that refresh so its state change renders the new code. Watch callbacks
+receive both the new and previous values; they are not the application dispatch
+callback. Replacing the named watch avoids retaining an obsolete callback after
+reload.
 
-In Respo, you are asked to define `*store` explicitly. They the global states of data. As an Atom, the value inside is immutable, but the reference is mutable. During hot swapping, variables defined with `defatom` will be retained. As a result, component states are persistent even code is swapped:
+Keep the original error branch and JavaScript `bottom-tip` `hud!` calls: build
+errors must remain visible on the page. A failed build must not refresh the
+running state as though it were valid. `hud!` is a host UI function, not a
+replacement for `raise` or a language primitive.
 
-```cirru
-defatom *store $ atom
-  or
-    let
-        raw $ or
-          js/localStorage.getItem "|respo"
-          , "|{:data [], :states {}}"
-      read-string raw
-    , schema/store
-```
+Archive loading is a separate boundary. This app currently writes an archive
+but does not restore it at startup; this migration does not enable restoration.
+If adding restoration, decode the wire value into the local Store before
+registering automatic saves. A parse failure must not overwrite the original
+archive with a default store.
