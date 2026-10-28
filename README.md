@@ -1,11 +1,11 @@
 
 # Respo Guidebook
 
-配对正式 Calcit CLI / `@calcit/procs` 0.31.0，以及已发布的 Docs Workflow 0.0.38、
-Respo 0.17.0-alpha.2、Reel 0.7.0-alpha.2、UI 0.9.0-alpha.2 和 JS-FFI 0.2.5。
-工具链为正式版本，模块图仍有预发布版本；不把两者统称为全图稳定。升级后重新安装依赖并完整
-刷新页面，不混用旧 CLI/alpha runtime。UI 0.9 基础样式可能影响外观。源码仅使用
-`calcit.cirru` 与 `deps.cirru`，不生成 compact/package.cirru。
+本轮候选配对正式 Calcit CLI / `@calcit/procs` **0.32.0**，目标模块为 Docs Workflow
+0.0.40、Respo 0.17.0、Reel 0.7.0、UI/Router 0.9.0、Markdown 0.5.0 和 JS-FFI 0.2.8。
+当前通过本地候选模块链接验证，尚未证明已发布依赖图的 Caps strict 安装；上游 tag
+发布后仍需干净安装和 PR CI。升级后重新安装依赖并完整刷新页面，UI 样式可能影响外观。
+源码仅使用 `calcit.cirru` 与 `deps.cirru`，不生成 compact/package.cirru。
 
 Guide 说明当前 Ref/watch、Option、event handler/app dispatch、名义 Store 和宿主边界。
 旧 Beginner Guide、部分 Guide 实现说明和 API 仍有历史片段，尚未全部迁移或独立执行；站点构建通过不代表
@@ -13,7 +13,7 @@ Guide 说明当前 Ref/watch、Option、event handler/app dispatch、名义 Stor
 
 ## 开发与验收
 
-Node 24、Yarn 4.18.0、正式 0.31.0 CLI：
+Node 24、Yarn 4.18.0、正式 0.32.0 CLI：
 
 ```bash
 corepack enable
@@ -32,7 +32,7 @@ yarn dev
 
 默认 entry 的 dispatch-op 显式绑定原有 renderer 的 Dynamic 宿主入口；
 非 Enum 输入仍被拒绝，业务 payload 仍受检后构造 Docs Workflow 的具名 Op。
-Store/Op、全部定义 schema 与处理函数未改，不以关闭证明审计或增加断言绕过 strict。
+14 个定义的 schema 与 Store/Op 合同保持；官方 formatter 转换 renderer 的一处类型提示，业务表达式不变，不以关闭证明审计或增加断言绕过 strict。
 
 ## 部署边界
 
