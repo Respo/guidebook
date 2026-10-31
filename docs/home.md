@@ -4,7 +4,7 @@
 
 Inspired by React and Reagent.
 
-This site targets formal Calcit/procs **0.32.0**. Choose **Guide** in the sidebar
+This site targets formal Calcit/procs **0.32.1**. Choose **Guide** in the sidebar
 for current migration notes. Beginner Guide and older API chapters retain
 historical material; not every snippet is ported or independently type-checked.
 

@@ -1,11 +1,6 @@
-# Guide: Calcit 0.32.0
+# Guide: Calcit 0.32.1
 
-This site targets formal Calcit CLI / `@calcit/procs` **0.32.0**, Respo
-**0.17.0**, Reel **0.7.0** and Docs Workflow **0.0.40** candidates.
-Local candidate validation does not establish a released dependency graph;
-clean Caps installation and PR CI must follow upstream publication. Use
-`calcit.cirru` for source and `deps.cirru` for module versions; do not restore
-`compact.cirru` or `package.cirru`, or mix runtime and CLI versions.
+This site pairs formal Calcit CLI / `@calcit/procs` **0.32.1** with released Docs Workflow **0.0.40**, Respo **0.17.1** and JS-FFI **0.2.9**. The published UI graph still includes Reel **0.7.0-alpha.5**, Markdown **0.5.0-alpha.5** and Router **0.9.0-alpha.4**; it is not an entirely stable-release graph. Install it using Caps strict and keep runtime and CLI paired. Use `calcit.cirru` for source and `deps.cirru` for module versions; do not restore `compact.cirru` or `package.cirru`.
 
 For a new application, start with the maintained
 [Respo template](https://github.com/Respo/respo-calcit-workflow). Check its own
@@ -73,6 +68,6 @@ fragment or certify browser/WebSocket application behavior.
 The Beginner Guide, older implementation discussions under Guide, and several API
 chapters retain historical design notes. Their
 old macro expansions, direct JavaScript access and operation syntax are not
-copy-ready 0.32.0 code. Consult the paired published module's `calcit query def`
+copy-ready 0.32.1 code. Consult the paired published module's `calcit query def`
 and `query schema` views and the maintained template. Historical examples need
 section-by-section migration, not mechanical renaming without contract checks.
