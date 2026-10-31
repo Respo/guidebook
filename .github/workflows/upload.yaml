@@ -44,13 +44,16 @@ jobs:
 
     - name: Validate Calcit snapshot
       run: |
+        set -euo pipefail
         calcit calcit.cirru edit format
-        git diff --exit-code -- calcit.cirru
+        git diff --exit-code --quiet -- calcit.cirru
         calcit --check-only --all-defs --format json
         calcit --check-only --ns app.main --ns app.config --ns app.schema --ns app.updater --format json
         calcit fix --workflow strict --verify --format json | jq -e '.data.workflow.status == "passed" and .diagnostics == []'
         calcit analyze weak-types --only dynamic-method --summary-only --format json | jq -e '.data.summary.findings == 0'
         calcit analyze weak-types --only deprecated-call --summary-only --format json | jq -e '.data.summary.calls == 0'
+        calcit docs check-md docs/guide.md --failures-only
+        calcit docs check-md docs/guide/dom-events.md --failures-only
 
     - name: Compile and build web app
       env:

@@ -1,6 +1,6 @@
 > Historical tutorial: the old macro expansions, JavaScript access and dispatch
 > examples below predate current typed APIs. Start with **Guide** in the sidebar
-> for formal 0.31.0 contracts. This is not a standalone checked current app.
+> for formal 0.32.1 contracts. This is not a standalone checked current app.
 
 Want to explore by yourself?
 

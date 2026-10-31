@@ -1,10 +1,6 @@
-# Guide: Calcit 0.31.0
+# Guide: Calcit 0.32.1
 
-This site pairs formal Calcit CLI / `@calcit/procs` **0.31.0**, Respo
-**0.17.0-alpha.2**, Reel **0.7.0-alpha.2** and Docs Workflow **0.0.38**.
-The CLI/runtime are formal releases; the module graph still includes prereleases. Use `calcit.cirru`
-for source and `deps.cirru` for published module versions; do not restore
-`compact.cirru` or `package.cirru`, or mix this runtime with an alpha CLI.
+This site pairs formal Calcit CLI / `@calcit/procs` **0.32.1** with released Docs Workflow **0.0.40**, Respo **0.17.1** and JS-FFI **0.2.9**. The published UI graph still includes Reel **0.7.0-alpha.5**, Markdown **0.5.0-alpha.5** and Router **0.9.0-alpha.4**; it is not an entirely stable-release graph. Install it using Caps strict and keep runtime and CLI paired. Use `calcit.cirru` for source and `deps.cirru` for module versions; do not restore `compact.cirru` or `package.cirru`.
 
 For a new application, start with the maintained
 [Respo template](https://github.com/Respo/respo-calcit-workflow). Check its own
@@ -25,9 +21,7 @@ ns example.counter
 defref *count 0
 
 defn increment! ()
-  hint-fn $ {}
-    :args $ []
-    :return 'Unit
+  hint-fn $ Fn $ -> Unit
   reset! *count $ inc @*count
   , &unit
 ```
@@ -52,7 +46,7 @@ handle `typed/decode-control` separately, and use `typed/record-op` for domain
 operations. `Date.now` is a host call, not a numeric constant; JS-FFI's
 `date-now-snapshot` exposes a checked `:timestamp` value.
 
-This app uses Docs Workflow's published **DocNode, Store and Op**, plus its
+This app uses Docs Workflow's **DocNode, Store and Op**, plus its
 updater. A second nominally distinct Store with identical fields is not
 interchangeable with that module's Store.
 
@@ -74,6 +68,6 @@ fragment or certify browser/WebSocket application behavior.
 The Beginner Guide, older implementation discussions under Guide, and several API
 chapters retain historical design notes. Their
 old macro expansions, direct JavaScript access and operation syntax are not
-copy-ready 0.31.0 code. Consult the paired published module's `calcit query def`
+copy-ready 0.32.1 code. Consult the paired published module's `calcit query def`
 and `query schema` views and the maintained template. Historical examples need
 section-by-section migration, not mechanical renaming without contract checks.
