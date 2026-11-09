@@ -6,12 +6,12 @@
     {} (:description |) (:init-fn 'app.main/main!) (:mode :js) (:reload-fn 'app.main/reload!) (:target :browser)
       :feature-policy $ {}
       :modules $ [] |respo.calcit/ |respo-ui.calcit/ |respo-markdown.calcit/ |reel.calcit/ |respo-router.calcit/ |docs-workflow/ |js-ffi/
-      :type-slots $ {} $ :dispatch-op 'Dynamic
+      :type-slots $ {} $ :dispatch-op 'docs-workflow.schema/Op
   :files $ {}
     'app.config $ %{} 'FileEntry
       :defs $ {}
         'Site $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defstruct Site (:storage-key 'String)
+          :code $ quote $ defstruct Site (:storage-key String)
           :examples $ []
           :schema $ quote StructDef
         'dev? $ %{} 'CodeEntry (:doc |)
@@ -41,7 +41,7 @@
                 match op
                   (:states cursor data)
                     match
-                      try-decode-map-as cursor $ :: 'List 'Tag
+                      try-decode-map-as cursor $ List Tag
                       (:ok typed-cursor)
                         reset! *reel $ typed/record-op updater @*reel (docs-schema/Op :states typed-cursor data) (generate-id!)
                           :timestamp $ shared/date-now-snapshot
@@ -55,7 +55,7 @@
                   _ $ eprintln |Unknown-operation: op
             , &unit
           :examples $ []
-          :schema $ quote $ Fn Enum (-> Unit) (:features :js-ffi)
+          :schema $ quote $ Fn AnyEnum (-> Unit) (:features :js-ffi) (:open :decode)
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! () (register-languages!)
             println "|Running mode:" $ if config/dev? |dev |release
