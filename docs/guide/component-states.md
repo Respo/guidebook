@@ -5,8 +5,9 @@ A component state branch is an open Map with a `:cursor` path and optional
 boundary explicit; decode the fields a widget consumes before using them as a
 business model. A missing Map key returns `Option :none`, not an implicit nil.
 
-`respo.core/>>` selects a branch and extends its cursor. This small example uses
-Tag keys. The published operation takes a `List<respo.schema/CoordKey>`.
+`respo.core/>>` takes one `respo.schema/CoordKey` and appends it to the
+parent cursor. The resulting branch stores its path as a
+`List<respo.schema/CoordKey>`.
 
 ```cirru
 let
@@ -27,15 +28,18 @@ returns Unit. In this site, that operation is `docs-workflow.schema/Op`.
 A custom callback such as `on-select(path, d!)` has two parameters, while each
 call to `d!` still passes a single operation.
 
-Validate external data where it enters the app. For example, a widget that
-stores a draft string can check an imported cursor and draft before
-constructing the operation:
+Validate external data where it enters the app. A widget that imports a
+draft can check it as a String and use the cursor of its own state branch
+when constructing the operation.
 
 ```cirru
 let
-    raw-cursor $ parse-cirru-edn "|[] :task"
+    states $ {} (:cursor $ [])
+    branch $ respo.core/>> states :task
     raw-draft $ parse-cirru-edn "|do |Edited"
-    cursor $ decode-map-as raw-cursor $ List respo.schema/CoordKey
+    cursor $ decode-map-as
+      .unwrap $ get branch :cursor
+      List respo.schema/CoordKey
     draft $ decode-map-as raw-draft 'String
     operation $ docs-workflow.schema/Op :states cursor draft
   assert= (docs-workflow.schema/Op :states ([] :task) |Edited) operation
