@@ -1,6 +1,11 @@
-# Guide: Calcit 0.32.1
+# Guide: Calcit 0.40.0
 
-This site pairs formal Calcit CLI / `@calcit/procs` **0.32.1** with released Docs Workflow **0.0.40**, Respo **0.17.1** and JS-FFI **0.2.9**. The published UI graph still includes Reel **0.7.0-alpha.5**, Markdown **0.5.0-alpha.5** and Router **0.9.0-alpha.4**; it is not an entirely stable-release graph. Install it using Caps strict and keep runtime and CLI paired. Use `calcit.cirru` for source and `deps.cirru` for module versions; do not restore `compact.cirru` or `package.cirru`.
+Use the published Calcit CLI and `@calcit/procs` **0.40.0** together. This site
+uses Docs Workflow **0.1.0**, Respo **0.19.5**, Respo UI **0.15.2**, Reel
+**0.11.0**, Markdown **0.8.2**, Router **0.12.2**, and JS-FFI **0.2.13**.
+Docs Workflow also brings in Alerts **0.14.3**. Install with Caps strict and run
+`caps verify --toolchain` to check the version pairing. The source and module
+versions live in `calcit.cirru` and `deps.cirru`.
 
 For a new application, start with the maintained
 [Respo template](https://github.com/Respo/respo-calcit-workflow). Check its own
@@ -36,14 +41,14 @@ not prove a JavaScript value has a Calcit schema. Keep JavaScript `bottom-tip`
 `respo.core/>>` selects a state branch and carries its cursor. A Respo event
 handler receives `(event, dispatch!)`; the dispatch function accepts exactly
 one value of the entry's `dispatch-op` type and returns Unit. For state changes,
-package the cursor and new state in one application operation, then validate
-its fields at the app boundary. A two-argument handler or custom
+validate any raw cursor and payload where they enter the app, then construct
+and dispatch one application operation. A two-argument handler or custom
 `on-select(path, d!)` callback does not make `d!` a two-argument dispatcher.
 
 Define an application Op enum and validate incoming state cursors/payloads
 before constructing it. With typed Reel, retain `State<Op, Store>` in a Ref,
-handle `typed/decode-control` separately, and use `typed/record-op` for domain
-operations. `Date.now` is a host call, not a numeric constant; JS-FFI's
+send `reel.typed/Control` to the separate `on-control!` callback, and use
+`typed/record-op` for application operations. `Date.now` is a host call, not a numeric constant; JS-FFI's
 `date-now-snapshot` exposes a checked `:timestamp` value.
 
 This app uses Docs Workflow's **DocNode, Store and Op**, plus its
@@ -55,8 +60,8 @@ interchangeable with that module's Store.
 Calcit's `get` returns an Option. Match `:some` / `:none`, or use `.unwrap-or`
 with a meaningful default; use `.unwrap` only for a real presence invariant.
 Do not insert arbitrary empty collections merely to silence checks. State
-trees and browser event Maps remain heterogeneous boundaries: validate the
-fields consumed rather than asserting every event is an unrelated Struct.
+trees can hold heterogeneous values. Browser callbacks use `RespoEvent`, and
+widget code validates the host fields it consumes.
 
 ## Verification and older chapters
 
@@ -68,6 +73,6 @@ fragment or certify browser/WebSocket application behavior.
 The Beginner Guide, older implementation discussions under Guide, and several API
 chapters retain historical design notes. Their
 old macro expansions, direct JavaScript access and operation syntax are not
-copy-ready 0.32.1 code. Consult the paired published module's `calcit query def`
+copy-ready 0.40.0 code. Consult the paired published module's `calcit query def`
 and `query schema` views and the maintained template. Historical examples need
 section-by-section migration, not mechanical renaming without contract checks.
