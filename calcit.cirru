@@ -34,35 +34,18 @@
         'dispatch! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn dispatch! (op)
             when config/dev? $ println |Dispatch: op
-            match (typed/decode-control op)
-              (:some control)
-                reset! *reel $ typed/apply-control updater @*reel control
-              (:none)
-                match op
-                  (:states cursor data)
-                    match
-                      try-decode-map-as cursor $ List Tag
-                      (:ok typed-cursor)
-                        reset! *reel $ typed/record-op updater @*reel (docs-schema/Op :states typed-cursor data) (generate-id!)
-                          :timestamp $ shared/date-now-snapshot
-                      (:err message) (eprintln message)
-                  (:hydrate-storage data)
-                    match (try-decode-map-as data 'docs-workflow.schema/Store)
-                      (:ok store)
-                        reset! *reel $ typed/record-op updater @*reel (docs-schema/Op :hydrate-storage store) (generate-id!)
-                          :timestamp $ shared/date-now-snapshot
-                      (:err message) (eprintln message)
-                  _ $ eprintln |Unknown-operation: op
+            reset! *reel $ typed/record-op updater @*reel op (generate-id!)
+              :timestamp $ shared/date-now-snapshot
             , &unit
           :examples $ []
-          :schema $ quote $ Fn AnyEnum (-> Unit) (:features :js-ffi) (:open :decode)
+          :schema $ quote $ Fn docs-workflow.schema/Op (-> Unit) (:features :js-ffi)
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! () (register-languages!)
             println "|Running mode:" $ if config/dev? |dev |release
             if config/dev? $ load-console-formatter!
             render-app!
             add-watch! *reel :changes $ fn (reel prev) (render-app!)
-            listen-devtools! |k dispatch!
+            listen-devtools-toggle! |k $ fn () $ on-control! (typed/Control :toggle)
             browser/set-before-unload! $ fn (event) (persist-storage!)
             browser/set-interval! persist-storage! 60000
             println "|App started."
@@ -70,11 +53,16 @@
           :schema $ quote $ Fn (-> Unit) (:features :js-ffi)
         'mount-target $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn mount-target ()
-            .query-selector (js-cast js/document dom/DomDocument) |.app
+            .unwrap $ respo-browser/query-selector |.app
           :examples $ []
-          :schema $ quote $ Fn
-            -> $ JsNullish respo.dom/DomElement
-            :features :js-ffi
+          :schema $ quote $ Fn (-> respo.dom/DomElement) (:features :js-ffi)
+        'on-control! $ %{} 'CodeEntry (:doc |)
+          :code $ quote $ defn on-control! (control)
+            when config/dev? $ println |Dispatch: control
+            reset! *reel $ typed/apply-control updater @*reel control
+            , &unit
+          :examples $ []
+          :schema $ quote $ Fn reel.typed/Control (-> Unit) (:features :js-ffi)
         'persist-storage! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn persist-storage! () (js/console.log |persist)
             browser/storage-set! (:storage-key config/site)
@@ -94,21 +82,19 @@
           :schema $ quote $ Fn (-> Unit) (:features :js-ffi)
         'render-app! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn render-app! ()
-            render! (mount-target) (comp-container @*reel schema/docs)
-              fn (op)
-                hint-fn $ Fn Dynamic (-> Unit) (:features :js-ffi)
-                if (enum? op) (dispatch! op) (raise "|Expected an Enum render action")
-                , &unit
+            render-with! (mount-target)
+              fn () $ comp-container @*reel schema/docs on-control!
+              , dispatch!
           :examples $ []
           :schema $ quote $ Fn (-> Unit) (:features :js-ffi)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns app.main
           :require
-            respo.core :refer $ render! clear-cache!
+            respo.core :refer $ render-with! clear-cache!
             docs-workflow.comp.container :refer $ comp-container
             app.updater :refer $ updater
             app.schema :as schema
-            reel.util :refer $ listen-devtools!
+            reel.util :refer $ listen-devtools-toggle!
             app.config :as config
             |./calcit.build-errors :default build-errors
             |bottom-tip :default hud!
@@ -116,8 +102,7 @@
             reel.typed :as typed
             js-ffi.browser :as browser
             js-ffi.shared :as shared
-            respo.dom :as dom
-            docs-workflow.schema :as docs-schema
+            respo.ffi.browser :as respo-browser
     'app.schema $ %{} 'FileEntry
       :defs $ {}
         'docs $ %{} 'CodeEntry (:doc |)
