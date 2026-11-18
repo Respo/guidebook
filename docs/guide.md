@@ -1,9 +1,9 @@
-# Guide: Calcit 0.41.0
+# Guide: Calcit 0.43.0
 
-Use the published Calcit CLI and `@calcit/procs` **0.41.0** together. This site
-uses Docs Workflow **0.1.0**, Respo **0.19.5**, Respo UI **0.15.2**, Reel
-**0.11.0**, Markdown **0.8.2**, Router **0.12.2**, and JS-FFI **0.2.13**.
-Docs Workflow also brings in Alerts **0.14.3**. Install with Caps strict and run
+Use the published Calcit CLI and `@calcit/procs` **0.43.0** together. This site
+uses Docs Workflow **0.1.1**, Respo **0.19.11**, Respo UI **0.15.5**, Reel
+**0.11.3**, Markdown **0.9.3**, Router **0.12.9**, and JS-FFI **0.2.18**.
+Docs Workflow also brings in Alerts **0.14.6**. Install with Caps strict and run
 `caps verify --toolchain` to check the version pairing. The source and module
 versions live in `calcit.cirru` and `deps.cirru`.
 
@@ -73,6 +73,6 @@ fragment or certify browser/WebSocket application behavior.
 The Beginner Guide, older implementation discussions under Guide, and several API
 chapters retain historical design notes. Their
 old macro expansions, direct JavaScript access and operation syntax are not
-copy-ready 0.41.0 code. Consult the paired published module's `calcit query def`
+copy-ready 0.43.0 code. Consult the paired published module's `calcit query def`
 and `query schema` views and the maintained template. Historical examples need
 section-by-section migration, not mechanical renaming without contract checks.
