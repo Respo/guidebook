@@ -1,7 +1,7 @@
 
 # Respo Guidebook
 
-开发使用配对的 Calcit CLI 和 `@calcit/procs` 0.44.0，并从正式标签解析 Docs Workflow 0.1.2 与 Reel 0.11.4。更新依赖后重新生成前端。
+开发使用配对的 Calcit CLI 和 `@calcit/procs` 0.44.0，并从正式标签解析 Docs Workflow 0.1.3 与 Reel 0.11.5。更新依赖后重新生成前端。
 
 Guide 说明当前 Ref/watch、Option、event handler/app dispatch、名义 Store 和宿主边界。
 旧 Beginner Guide、部分 Guide 实现说明和 API 仍有历史片段，尚未全部迁移或独立执行；站点构建通过不代表
