@@ -74,6 +74,7 @@ jobs:
         secret-key: ${{ secrets.COS_SECRET_KEY }}
 
     - name: Install verified rsync
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: |
         curl --fail --location --silent --show-error --retry 3 --retry-delay 5 \
           --output "$RUNNER_TEMP/rsync.tar.gz" \
